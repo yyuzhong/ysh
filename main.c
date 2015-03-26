@@ -141,7 +141,7 @@ int ysh_run_commands(char *line)
       comms[comm_num] = tmp_comm;
       comm_num++;
       if (comm_num >= comm_size) {
-        comm_size += YSH_TOKENS_BUFSIZE;
+        comm_size += YSH_COMMANDS_SIZE;
         comms_backup = comms;
         comms = realloc(comms, comm_size * sizeof(char*));
         if (!comms) {
