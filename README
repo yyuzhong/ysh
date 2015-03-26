@@ -1,0 +1,49 @@
+This directory contains the release 1.0 of ysh.
+
+Ysh(Yan's shell) is a simple shell running on Unix-like operating system. In this directory, there are source codes file,
+Makefile and a sample file for executing batch mode command.. 
+
+Usage and Specification
+----------------------
+Ysh has two methods to run.
+
+The first way is run in interactive mode, simiar to bash or csh. The basic commands are support in ysh.
+You could type one command and presss enter key, ysh will run the command you input.
+Each line (of the batch file or typed at the prompt) may contain multiple commands separated with the ; character.
+Each of the commands separated by a ; should be run simultaneously, or concurrently. 
+To exit ysh, just type 'quit' command and presss enter key.
+
+The second way is put all commands input a text file, then pass this text file to ysh. Ysh will run these commands in batch mode.
+If you want to exit ysh, type quit command. If there is 'quit' command in one line with multi commands, all commands will be 
+executed, and then quit ysh.
+If ysh encounter a 'quit' command in the middle of command list file, it will finish current line and exit.  
+
+Compiling and Run
+-----------------
+Make sure GNU toolchain and Make are installed at first.
+The source codes of ysh are managed by Makefile. Just type make in the root directory. It will generage executable file called ysh.
+To run this application, just type ./ysh in current directory or /yourdir/ysh in any folder.
+
+Design Overview
+---------------
+This program include three main parts:
+
+1. Get user inputs until user press 'enter' key or read line by line from file. See function ysh_read_line().
+2. Parse user's input or one line, divide into multiple commands. For each command, parse it again to get all arguments.
+   See function ysh_run_commands and ysh_split_command.
+3. Execute all commands and wait all commands finish. Quit shell while get 'quit' command
+   See function ysh_run_commands.
+
+Known bugs or problems
+----------------------
+1. Could only run commands support by 'execvp'. 
+2. Only support two builtin commands: 'cd' and 'quit'. More commands are need.
+3. Some advance functions are not support, such as running command at background, pipeline etc. 
+
+License
+-------
+This project refer part of codes from https://github.com/brenns10/lsh, but change a lot basing on requirement of OS homework. 
+This project is developed by Yuzhong Yan at Prairie View A&M University.
+You can make any changes and use it in any non-commerical or commerical products. 
+
+
